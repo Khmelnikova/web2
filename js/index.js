@@ -24,6 +24,37 @@ class Student extends Person {
     get info() {
         return super.info + `course : ${this.course}, group : ${this.group}`;
     }
+    
+    createNewStudent(){
+    let name=$(".name").val();
+    let age=$(".age").val();
+    let course=$("#course").val();
+    let group=$("#group").val();
+        let student = new Student(name, age, id, course, group);
+        students.push(student);
+        console.log(students);
+        this.addStudent(students);
+    id++;
+};
+    
+    addStudent(students){
+    let templateStudent = Handlebars.compile( 
+        $("#templateStudent").html()  
+    );
+    $(".students").empty().append( 
+        templateStudent(students) 
+    );
+}
+    deleteStudent(id) {
+    for(let i = 0; i < students.length; ++i) {
+        if(students[i].id == id) {
+            students.splice(i,1);
+            break;
+        }
+    }
+    $("#"+id).remove();
+};
+
 };
 
 class Teacher extends Person {
@@ -34,6 +65,35 @@ class Teacher extends Person {
     get info() {
         super.info + `subject : ${this.subject}`;
     }
+    createNewTeacher(){
+    let name=$(".nameT").val();
+    let age=$(".ageT").val();
+    let subject=$("#subject").val();
+        let teacher = new Teacher(name, age, id, subject);
+        teachers.push(teacher);
+        console.log(teachers);
+        this.addTeachers(teachers);
+    id++;
+}
+    addTeachers(teachers){
+    let templateTeacher = Handlebars.compile( 
+        $("#templateTeacher").html()  
+    );
+    $(".teachers").empty().append( 
+        templateTeacher(teachers) 
+    );
+}
+
+    deleteTeacher(id) {
+    for(let i = 0; i < teachers.length; ++i) {
+        if(teachers[i].id == id) {
+            teachers.splice(i,1);
+            break;
+        }
+    }
+    $("#"+id).remove();
+};
+
 };
 
 
@@ -43,83 +103,28 @@ let teachers = [];
 
 let id = 0;
 
+var stud = new Student();
+
 $(document).ready( function () {
     $(".error").hide();
-    $(document).on("click", "#new_student", function () {
-        newStudent();
+    $("#new_student").on("click", function () {
+                console.log(stud);
+        stud.createNewStudent();
+
     });
-    $(document).on("click", "#new_teacher", function () {
-        newTeacher();
+    $("#new_teacher").on("click", function () {
+        stud.createNewTeacher();
     });
-    $(document).on("click", ".delete_student", function () {
-        deleteStudent(this.id);
+    $(".delete_student").on("click", function () {
+        stud.deleteStudent(this.id);
     });
-        $(document).on("click", ".delete_teacher", function () {
-        deleteTeacher(this.id);
+        $(".delete_teacher").on("click", function () {
+        this.deleteTeacher(this.id);
     });
-    $(document).on("click", ".change_student", function () {
-        changeStudent(this.id);
+    $(".change_student").on("click", function () {
+        this.changeStudent(this.id);
     });
-        $(document).on("click", ".change_teacher", function () {
-        changeTeacher(this.id);
+        $(".change_teacher").on("click", function () {
+        this.changeTeacher(this.id);
     });
 });
-
-function newStudent(){
-    let name=$(".name").val();
-    let age=$(".age").val();
-    let course=$("#course").val();
-    let group=$("#group").val();
-        let student = new Student(name, age, id, course, group);
-        students.push(student);
-        console.log(students);
-        addStudent(students);
-    id++;
-};
-function addStudent(students){
-    let templateStudent = Handlebars.compile( 
-        $("#templateStudent").html()  
-    );
-    $(".students").empty().append( 
-        templateStudent(students) 
-    );
-}
-
-function deleteStudent(id) {
-    for(let i = 0; i < students.length; ++i) {
-        if(students[i].id == id) {
-            students.splice(i,1);
-            break;
-        }
-    }
-    $("#"+id).remove();
-};
-
-function newTeacher(){
-    let name=$(".nameT").val();
-    let age=$(".ageT").val();
-    let subject=$("#subject").val();
-        let teacher = new Teacher(name, age, id, subject);
-        teachers.push(teacher);
-        console.log(teachers);
-        addTeachers(teachers);
-    id++;
-};
-function addTeachers(teachers){
-    let templateTeacher = Handlebars.compile( 
-        $("#templateTeacher").html()  
-    );
-    $(".teachers").empty().append( 
-        templateTeacher(teachers) 
-    );
-}
-
-function deleteTeacher(id) {
-    for(let i = 0; i < teachers.length; ++i) {
-        if(teachers[i].id == id) {
-            teachers.splice(i,1);
-            break;
-        }
-    }
-    $("#"+id).remove();
-};
