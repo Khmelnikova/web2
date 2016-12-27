@@ -104,6 +104,7 @@ let teachers = [];
 let id = 0;
 
 var stud = new Student();
+var teach = new Teacher();
 
 $(document).ready( function () {
     $(".error").hide();
@@ -113,18 +114,18 @@ $(document).ready( function () {
 
     });
     $("#new_teacher").on("click", function () {
-        stud.createNewTeacher();
+        teach.createNewTeacher();
     });
     $(".delete_student").on("click", function () {
         stud.deleteStudent(this.id);
     });
         $(".delete_teacher").on("click", function () {
-        this.deleteTeacher(this.id);
+        teach.deleteTeacher(this.id);
     });
     $(".change_student").on("click", function () {
-        this.changeStudent(this.id);
+        stud.changeStudent(this.id);
     });
         $(".change_teacher").on("click", function () {
-        this.changeTeacher(this.id);
+        teach.changeTeacher(this.id);
     });
 });
