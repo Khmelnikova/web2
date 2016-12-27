@@ -1,0 +1,94 @@
+<!DOCTYPE HTML> 
+<html> 
+
+<head> 
+<meta charset="utf-8"> 
+<link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css"/>
+
+<script src="libs/jquery/dist/jquery.min.js"></script>
+<script src="libs/bootstrap/dist/js/bootstrap.min.js"> </script>
+<script src="libs/handlebars/handlebars.min.js"></script>
+<script src="js/index.js"> </script>
+
+
+</head> 
+
+<body> 
+ 
+
+
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Добавить студента</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Добавить преподавателя</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+              <div class="modal-body">
+        <input  class="form-control name" placeholder="Имя">
+        <input  class="form-control age" placeholder="Возраст">
+        <input  class="form-control" id="course" placeholder="Курс">
+        <input  class="form-control" id="group" placeholder="Группа">
+                        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="new_student">Сохранить</button>
+      </div>
+        <div class="col-md-12 col-lg-12 students"> </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+         <div class="modal-body">
+        <input  class="form-control nameT" placeholder="Имя">
+        <input  class="form-control ageT" placeholder="Возраст">
+        <input  class="form-control" id="subject" placeholder="Предмет">
+                        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="new_teacher">Сохранить</button>
+      </div>
+     <div class="col-md-12 col-lg-12 teachers">
+    </div>
+  </div>
+
+</div>
+
+
+
+</div>
+      <script id="templateStudent" type="text/x-handlebars-template">
+  {{#each this  }}
+    <div id="{{id}}" class="list">
+           <div class="row">
+            <button type="button" class="btn btn-default">  <span class="glyphicon glyphicon-remove delete_student" aria-hidden="true" id = {{id}}></span> </button>
+            <button type="button" class="btn btn-default">  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button>
+            <div class="col-md-2 col-lg-2"><b>Имя:</b>{{name}}</div>
+            <div class="col-md-1 col-lg-1"><b>Возраст:</b>{{age}}</div>
+            <div class="col-md-1 col-lg-1"><b>Курс:</b>{{course}}</div>
+            <div class="col-md-1 col-lg-1"><b>Группа:</b>{{group}}</div>
+          </div>
+  {{/each}}
+</script>
+
+
+
+
+      <script id="templateTeacher" type="text/x-handlebars-template">
+  {{#each this  }}
+    <div id="{{id}}" class="list">
+           <div class="row">
+            <button type="button" class="btn btn-default">  <span class="glyphicon glyphicon-remove delete_teacher" aria-hidden="true" id = {{id}}></span> </button>
+            <button type="button" class="btn btn-default">  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button>
+            <div class="col-md-2 col-lg-2"><b>Имя:</b>{{name}}</div>
+            <div class="col-md-1 col-lg-1"><b>Возраст:</b>{{age}}</div>
+            <div class="col-md-1 col-lg-1"><b>Предмет:</b>{{subject}}</div>
+            </div>
+  {{/each}}
+</script>
+ 
+</body> 
+</html>
